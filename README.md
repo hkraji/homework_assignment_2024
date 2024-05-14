@@ -3,7 +3,7 @@ The goal of this Ruby on Rails & React homework assignment is to assess your abi
 
 This repository mocks a CRM in the simplest of terms by demonstrating the one to many relationship of Companies to Deals and visualizng various attributes of each to our users.
 
-Unfortunately, the current implementation is (intentionally) naive and not working as expected in several ways.  
+Unfortunately, the current implementation is (intentionally) naive and not working as expected in several ways.
 
 Your primary task with this homework assignment is to resolve the user stories below.
 
@@ -32,14 +32,24 @@ Assumptions to make regarding the user story for this service:
 #### Running the App
 - `bin/dev`
 
+#### Installing the `mysql2` Gem
+
+If you encounter issues with the `mysql2` gem, ensure that you provide paths to the necessary libraries. Use the following command:
+
+```bash
+gem install mysql2 --version=0.5.6 -- --with-mysql-config=/opt/homebrew/bin/mysql_config --with-openssl-dir=/opt/homebrew/opt/openssl@3.2 --with-opt-lib=/opt/homebrew/lib
+```
+
+This command specifies the paths for the MySQL configuration and OpenSSL directory, which can resolve common installation problems.
+
 #### Submission
 - Clone the repository
 - Setup a new repository with the source code
 - Implement solution
 - Push your solution to a new branch
 - Create a Pull Request within the new repository
-- When you're ready, share a link to the Pull Request with us 
- 
+- When you're ready, share a link to the Pull Request with us
+
 
 ## FAQ
 #### How will I be evaluated?
