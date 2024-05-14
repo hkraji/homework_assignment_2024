@@ -74,9 +74,6 @@ GEM
     crass (1.0.6)
     cssbundling-rails (1.4.0)
       railties (>= 6.0.0)
-    data_migrate (9.4.0)
-      activerecord (>= 6.1)
-      railties (>= 6.1)
     date (3.3.4)
     debug (1.9.1)
       irb (~> 1.10)
@@ -202,7 +199,6 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   cssbundling-rails
-  data_migrate (~> 9.4)
   debug
   faker
   jbuilder
