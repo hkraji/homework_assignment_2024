@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_05_14_120935) do
+ActiveRecord::Schema[7.0].define(version: 2024_05_15_090212) do
   create_table "companies", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
     t.string "name"
     t.integer "employee_count"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "industry_id"
+    t.decimal "current_deals_amount", precision: 10
+    t.index ["current_deals_amount"], name: "index_companies_on_current_deals_amount"
   end
 
   create_table "deals", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", options: "ENGINE=InnoDB ROW_FORMAT=DYNAMIC", force: :cascade do |t|
