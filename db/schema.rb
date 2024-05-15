@@ -19,6 +19,7 @@ ActiveRecord::Schema[7.0].define(version: 2024_05_15_124833) do
     t.integer "industry_id"
     t.decimal "current_deals_amount", precision: 10
     t.index ["current_deals_amount"], name: "index_companies_on_current_deals_amount"
+    t.index ["employee_count"], name: "index_companies_on_employee_count"
     t.index ["name"], name: "index_companies_on_name"
   end
 
