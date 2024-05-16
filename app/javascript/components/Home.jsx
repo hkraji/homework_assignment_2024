@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import qs from "query-string";
 import SelectFilterComponent from "./SelectFilter";
 import apiClient from '../services/client';
+
+const DEBOUNCE_DELAY = 300;
 
 export default () => {
   // List of fetched companies
@@ -14,8 +16,11 @@ export default () => {
   const [minimumDealAmount, setMinimumDealAmount] = useState("");
   const [limit, setLimit] = useState(10);
 
+  // Debounce timeout
+  const [debounceTimeout, setDebounceTimeout] = useState(DEBOUNCE_DELAY);
+
   // Fetch companies from API
-  useEffect(() => {
+  const fetchCompanies = useCallback(() => {
     const params = {
       name: companyName,
       industries: industries,
@@ -33,6 +38,23 @@ export default () => {
       .then((res) => setCompanies(res.data))
       .catch((error) => console.error('Error fetching companies:', error));
   }, [companyName, industries, minEmployee, minimumDealAmount, limit]);
+
+  useEffect(() => {
+    if (debounceTimeout) {
+      clearTimeout(debounceTimeout);
+    }
+
+    const newTimeout = setTimeout(() => {
+      fetchCompanies();
+    }, DEBOUNCE_DELAY);
+
+    setDebounceTimeout(newTimeout);
+
+    return () => {
+      clearTimeout(newTimeout);
+    };
+  }, [companyName, industries, minEmployee, minimumDealAmount, limit]);
+
 
   const handleIndustriesChange = (selectedOptions) => {
     setIndustries(selectedOptions.map((option) => option.value).join(","));
