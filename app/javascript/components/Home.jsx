@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import qs from "query-string";
 import SelectFilterComponent from "./SelectFilter";
+import apiClient from '../services/client';
 
 export default () => {
   // List of fetched companies
@@ -28,11 +29,9 @@ export default () => {
     });
 
     const url = `/api/v1/companies?${queryParams}`;
-    fetch(url)
-      .then((res) => {
-        return res.json();
-      })
-      .then((res) => setCompanies(res));
+    apiClient(url)
+      .then((res) => setCompanies(res.data))
+      .catch((error) => console.error('Error fetching companies:', error));
   }, [companyName, industries, minEmployee, minimumDealAmount, limit]);
 
   const handleIndustriesChange = (selectedOptions) => {

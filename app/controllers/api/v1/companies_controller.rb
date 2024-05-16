@@ -1,6 +1,4 @@
-
-class Api::V1::CompaniesController < ApplicationController
-
+class Api::V1::CompaniesController < Api::V1::ActionController
   def index
     companies = ::CompaniesFilterService.new(filter_params).call
     render json: companies.as_json(include: :industry)

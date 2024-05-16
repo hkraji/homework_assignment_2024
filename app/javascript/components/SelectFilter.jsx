@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import Select from "react-select";
+import apiClient from '../services/client';
 
 const SelectFilterComponent = ({ dataPath, onChange }) => {
   const [options, setOptions] = useState([]);
 
   useEffect(() => {
-    fetch(dataPath)
-      .then((response) => response.json())
+    apiClient(dataPath)
+      .then((res) =>  res.data)
       .then((data) => {
         const options = data.map((item) => ({
           value: item.id,
